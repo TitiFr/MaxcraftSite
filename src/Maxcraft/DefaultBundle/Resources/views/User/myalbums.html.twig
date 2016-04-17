@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Maxcraft - Albums</title>
+    </head>
+
+    <body>
+        <div>
+            {% for album in albums %}
+                Nom Album : {{ album.name }}
+                Description : {{ album.description }}
+                De : {{ album.user.username }}
+                Date : {{ album.creationDate | date('d M Y à H:i') }}
+                <br>
+                {% if album.albumimage is null %}
+                    <p>Pas d'image trouvée</p>
+                {% else %}
+                    Aperçu : <br><img src="{{ asset(album.albumimage.getWebPath()) }}" alt="{{ album.albumimage.alt }}">
+                {% endif %}
+                <br><br>
+            {% endfor %}
+        </div>
+
+        <div>
+            <h1>Créer un nouvel Album</h1>
+            {{ form(form) }}
+        </div>
+    </body>
+</html>

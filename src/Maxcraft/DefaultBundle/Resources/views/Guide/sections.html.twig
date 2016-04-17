@@ -1,0 +1,31 @@
+{% extends "MaxcraftDefaultBundle:Others:layout.html.twig" %}
+
+{% block title %}Admin - Sections{% endblock %}
+
+{% block corps %}
+    <div class="section">
+        <h1>Editer les sections</h1>
+        <p>Voici la liste des sections de la page <strong>{{ page.title }}</strong>.</p>
+
+        <table class="admintable">
+
+            <tr>
+                <th>Ordre</th>
+                <th>Titre</th>
+
+
+                <th>Actions</th>
+            </tr>
+
+            {% for section in sections %}
+                <tr {% if not section.display %}style="background-color:rgb(255, 166, 166);"{% endif %}>
+                    <td>{{ section.ordervalue }}</td>
+                    <td>{{ section.title }}</td>
+                    <td><a href="{{ path('admin_editsection', {'sectionId' : section.id}) }}">Editer</a> | <a href="{{ path('admin_removesection', {'sectionId' : section.id}) }}">Supprimer</a></td>
+
+                </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+{% endblock %}

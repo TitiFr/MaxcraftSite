@@ -1,0 +1,22 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+      WSC:
+                    class: Maxcraft\DefaultBundle\Service\SymfonyWSC
+                    arguments:
+                        - %serverKey%
+      maxcraft.websocket_server:
+                    class: Maxcraft\DefaultBundle\Service\SymfonyWSS
+                    arguments:
+                        - @service_container
+                        - %serverKey%
+
+
+
+services:
+    app.exception_controller:
+        class: Maxcraft\DefaultBundle\Controller\ExceptionController
+        arguments: ['@twig', '%kernel.debug%']

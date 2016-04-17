@@ -1,0 +1,43 @@
+<div class="graydiv" style="height:auto">
+    <h2>Votez pour nous !</h2>
+        {% for site in voteforus %}
+            {% if site.dopped and is_granted('ROLE_USER') %}
+                <a href="{{ path('maxcraft_vote') }}"><button class="button-bevel cyan" style="width:100%;">{{ site.title }}</button> </a>
+            {% else %}
+                <a target="_BLANK" href="{{ site.url }}"><button class="button-bevel green" style="width:100%;">{{ site.title }}</button> </a>
+            {% endif %}
+        {% endfor %}
+</div>
+
+<div class="graydiv playerfinder">
+    <h2>Trouver un joueur</h2>
+    <form action="{{ path('playerfinder') }}" method="GET">
+        <input id="search" name="form_pseudo" type="text"/>
+    </form>
+</div>
+
+
+<div class="graydiv" style="height:120px">
+    <h2>Derniers inscrits</h2>
+        {% for user in lastusers %}
+            <a href="{{ path('profil', {'pseudo': user.username}) }}"><img title="{{ user.username }}" class="player" src="{{ user.avatar(35) }}"/></a>
+        {% endfor %}
+</div>
+
+<div class="graydiv" style="height:120px">
+    <h2>Notre TeamSpeak</h2>
+    <img src="{{ asset('images/ts.png') }}" alt="TeamSpeak"/>
+    <p title="Demandez pour avoir des droits sur les canaux citoyens" style="display:inline; line-height:82px; vertical-align: 35px;font-size: 20px;color: #EEEEEE;margin-left: 15px;">maxcraft.fr</p>
+</div>
+
+<div class="graydiv">
+    <h2>En ligne ({{ onlinenbr }})</h2>
+    {% for user in onlineusers %}
+        <a href="{{ path('profil', {'pseudo': player.pseudo}) }}"><img class="player" alt="{{ player.pseudo }}" src="https://minotar.net/avatar/{{ player.pseudo }}/35" title="{{ player.pseudo }}"/></a>
+    {% endfor %}
+</div>
+
+<div class="graydiv" style="height:auto">
+    <h2>Le forum</h2>
+    <a target="_BLANK" href="http://forum.maxcraft.fr"><button class="button-bevel black" style="width:100%;">Acceder au forum</button></a>
+</div>

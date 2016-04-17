@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Maxcraft - Inscription</title>
+    </head>
+
+    <body>
+        <div>
+            {{ form(form) }}
+        </div>
+
+        <div class="section guidesection">
+            <h1>Les règles du serveur</h1>
+
+            <p>Avant de nous rejoindre vous devez lire ces règles et les accepter.</p><br/>
+
+            {% for section in sections %}
+            {{ section.content|raw }}
+            {% endfor %}
+        </div>
+    </body>
+</html>

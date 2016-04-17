@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Maxcraft - Faction {{ tag }}</title>
+    </head>
+
+    <body>
+        <div>
+            <p>Faction {{ faction.name }}</p>
+            <p>{{ nbmembers }} membres</p>
+            {% for member in members %}
+                <p>Membre : {{ member.username }}</p>
+            {% endfor %}
+            <p>Visiteur : {{ visitor }}</p>
+            <p>Is mine : {{ ismine }}</p>
+            <p>Factions alliées :</p>
+            {% for faction in allies %}
+                <p>{{ faction.name }}</p>
+            {% endfor %}
+            <p>Factions ennemies :</p>
+            {% for faction in enemies %}
+                <p>{{ faction.name }}</p>
+            {% endfor %}
+            {% if status is not null %}
+                <p>status : {{ status.hasRole }}</p>
+            {% endif %}
+        </div>
+    </body>
+</html>

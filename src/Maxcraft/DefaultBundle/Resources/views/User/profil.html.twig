@@ -1,0 +1,137 @@
+{% extends "MaxcraftDefaultBundle:Others:layout.html.twig" %}
+
+{% block title %}Profil de {{ user.username }}{% endblock %}
+
+{% block js %}
+{% endblock %}
+{% block corps %}
+
+<div style="clear: both;height:0px;"></div>
+<div id="gallerie">
+
+    <div class="graydiv" style="height:auto">
+        <h2>Profil de {{ user.username }}</h2>
+
+        {% if myprofil %}
+            <a href="{{ path('editprofil', {'pseudo' : user.username}) }}"><button class="button-bevel red" style="width:100%;">Modifier mon profil</button></a>
+            <a href="{{ path('maxcraft_messages') }}"><button class="button-bevel red" style="width:100%;">MP reçus</button></a>
+        {% else %}
+            <a href="{{ path('newmp', {'pseudo' : user.username}) }}"><button class="button-bevel red" style="width:100%;">Envoyer un MP</button></a>
+        {% endif %}
+    </div>
+
+    {{ render(controller("MaxcraftDefaultBundle:Default:wrap")) }}
+</div>
+
+<div class="section" id="profil">
+    <h1>{{user.username }}</h1>
+
+    <div id="avatar">
+        <img src="{{ user.avatar(130) }}"/>
+    </div>
+
+    <div id="infos">
+        <table>
+            <tr >
+                <td>Actif</td>
+                <td>
+                    {% if user.actif %}
+                        <strong style="color:green">Oui</strong>
+                    {% else %}
+                        <strong style="color:red">Non</strong>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr >
+                <td>Inscrit le</td>
+                <td><strong>{{ user.registerDate|date('d M Y à H:i') }}</strong></td>
+            </tr>
+            <tr >
+                {% if user.player.vanished %}
+                    <td style="padding-right:10px;">Dernière connexion</td>
+                    <td><strong>{{ lastco.start|date('d M Y à H:i') }}</strong></td>
+                {% else %}
+                    {% if lastco.end == null%}
+                         <td style="padding-right:10px;">Connecté depuis</td>
+                        <td><strong>{{ lastco.start|date('d M Y à H:i') }}</strong></td>
+                    {% else %}
+                    <td style="padding-right:10px;">Dernière connexion</td>
+                    <td><strong>{{ lastco.end|date('d M Y à H:i') }}</strong></td>
+                    {% endif %}
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Temps de jeu</td>
+                <td><strong>{{ hGT }} h, {{ mGT }} min</strong></td>
+            </tr>
+            <tr>
+                <td>Fortune</td>
+                <td><strong>{{ balance|number_format(0, ',', ' ') }}</strong> POs</td>
+            </tr>
+            {% if user.faction %}
+
+            <tr>
+                <td>Faction</td>
+                <td><a href="{{ path('maxcraft_faction', {'factionTag': user.faction.tag}) }}"><strong style="color:rgb(0, 90, 187)">[{{ user.faction.tag }}] {{ user.faction.name }}</strong></a></td>
+            </tr>
+            <tr>
+                <td>Grade</td>
+                <td>{{ user.getfactiontitle}}</td>
+            </tr>
+        </table>
+        {% else %}
+        <strong>{{ user.username }}</strong> n'a pas de faction.
+        {% endif %}
+    </div>
+</div>
+
+
+
+{% if user.profil %}
+    <div class="section" id="pageprofil">
+        <h1>A propos de moi</h1>
+        {{ user.profil|raw }}
+    </div>
+{% endif %}
+
+
+<div class="section" id="parcellelist">
+    <h1>Mes parcelles ({{ nbzones }})</h1>
+    {% if not zones %}
+        {% if myprofil %}
+            <p>Vous n'avez aucune parcelle, pour en acheter regardez <a href="">le catalogue</a> !</p>
+        {% else %}
+            <p>Ce joueur n'a aucune parcelle.</p>
+        {% endif %}
+    {% else %}
+        <div class="parcelle_gen">
+            {% for zone in zones %}
+                {{ render(controller('MaxcraftDefaultBundle:Zones:zone', {'zone' : zone})) }}
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+<div class="section">
+    <h1>Mes albums</h1>
+    {% if not albums %}
+        <p><strong>{{ user.username }}</strong>n'a aucun album !</p>
+    {% endif %}
+    {% for album in albums %}
+        <a style="text-decoration: none;" href="{{ path('maxcraft_album' , {'albumId': album.id}) }}">
+        {% if album.albumimage %}
+            <div class="album" style="background-image: url({{ asset(album.albumimage.getWebPath) }});">
+        {% else %}
+            <div class="album" style="background-color: white;">
+        {% endif %}
+                <div class="name">
+                    {{ album.name }}
+                </div>
+            </div>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,34 @@
+{% extends "MaxcraftDefaultBundle:Others:layout.html.twig" %}
+
+{% block title %}Maxcraft - Album {{ album.id }}{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{% block corps %}
+    <div style="clear: both;height:0px;"></div>
+
+    <div id="gallerie">
+        <div class="graydiv" style="height:auto">
+            <h2>{{ album.user.username }}</h2>
+            <a href="{{ path('profil', {'pseudo': album.user.username}) }}"><button class="button-bevel red" style="width:100%;">Profil</button></a>
+        </div>
+        {{ render(controller("MaxcraftDefaultBundle:Default:wrap")) }}
+    </div>
+
+    <div class="section">
+        <h1>{{ album.name }}
+            {% if app.user == album.user %}
+                <a href="{{ path('maxcraft_album_edit', {'albumId': album.id}) }}" style="text-decoration:none; color: rgb(51, 121, 12); float:right;line-height: 28px;">Editer l'album</a>
+            {% endif %}
+        </h1>
+        <p>{{ album.description }}</p><br/>
+        <div id="album" style="margin-left:-10px;">
+            {% if album.images %}
+                {% for image in album.images %}
+                    <img src="{{ asset(image.sliderPath) }}" alt="{{ image.name }}"/>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

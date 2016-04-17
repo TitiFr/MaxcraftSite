@@ -1,0 +1,32 @@
+<a href="{{ path('parcelle', {'zoneId': parcelle.id}) }}" title="{{ parcelle.displayType }} {{ parcelle.name }} ({{ parcelle.id }})">
+    <div class="parcelle_part">
+        <ul>
+            <li>
+                <span class="title" style="color:#{{ parcelle.color }}"><img style="margin-right:5px;opacity: 0.85;" src="{{ asset(parcelle.icon) }}"/>{{ parcelle.name }} </span>
+            </li>
+
+            {% if vente %}
+                <li style="color: rgb(179, 93, 0);">
+                    <span class="bold" style="color: rgb(179, 93, 0);">En vente :</span> {{ vente.price|number_format(0, ',', ' ') }} Po
+                </li>
+            {% endif %}
+
+            <li>
+                {% if parcelle.owner %}
+                <span class="bold">Propriétaire :</span> {{ parcelle.owner.username }}
+                {% else %}
+                <span class="bold">Pas de propriétaire !</span>
+                {% endif %}
+            </li>
+
+            <li>
+                <span class="bold">Coordonnées :</span> {{ parcelle.center.x }};{{ parcelle.center.z }} ({{ parcelle.world }})
+            </li>
+
+
+            <li>
+                <span class="bold">Zone parente  :</span> <a href="">{% if parcelle.parent %} {{ parcelle.parent.name }} {% else %} Aucune {% endif %} <img src="{{ asset('images/map_icon.png') }}"/></a>
+            </li>
+        </ul>
+    </div>
+</a>

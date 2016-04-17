@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Maxcraft - Demande d'entrée dans la faction {{ faction.tag }}</title>
+    </head>
+
+    <body>
+        <div>
+            <p>Faction : {{ faction.name }}</p>
+            <p>Fondateur : {{ faction.owner.username }}</p>
+        </div>
+        <div>
+            {{ form(form) }}
+        </div>
+    </body>
+</html>

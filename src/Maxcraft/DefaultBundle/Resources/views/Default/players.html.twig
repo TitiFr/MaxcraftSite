@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Maxcraft - Les joueurs par {{ parser }}</title>
+    </head>
+
+    <body>
+    <div class="section">
+        <h1>{{ title }} ({{ nbtotal }})</h1>
+        <p>{{ description }}</p><br/>
+
+        {% for player in players %}
+
+            <div class="membre_player">
+                <a href="{{ path('profil', {'pseudo': player.username}) }}"><img class="tete_membre" src="{{player.avatar(60) }}" width="60" height="60"/></a>
+                <a href="{{ path('profil', {'pseudo': player.username}) }}"><p class="name_membre" >{{ player.username }}</p></a>
+
+                {% if parser == 'date' %}
+                    <p class="grade_membre">Inscrit le {{ player.registerDate|date('d/m/y') }} | {{ player.player.balance|number_format(0, ',', ' ') }} POs {% if player.faction %}| <a href="{{ path('faction', {'tag': player.faction.tag}) }}">Faction <strong>{{ player.faction.tag }}</strong></a> {% endif %}</p>
+                {% elseif parser == 'gametime' %}
+                    <p class="grade_membre">Inscrit le {{ player.registerDate|date('d/m/y') }} | {{ player.gametime // 60 }} h, {{ player.gametime - ((player.gametime // 60) * 60) }} min {% if player.faction %}| <a href="{{ path('faction', {'tag': player.faction.tag}) }}">Faction <strong>{{ player.faction.tag }}</strong></a> {% endif %}</p>
+                {% endif %}
+            </div>
+
+        {% endfor %}
+
+
+
+
+
+    </div>
+
+    <div class="section" style="text-align:center; min-height:20px;">
+        <a style="text-decoration:underline;" href="{{ path('maxcraft_players', {'page': 1, 'parser': 'date' })}}">Par ancienneté</a> | <a style="text-decoration:underline;" href="{{ path('maxcraft_players', {'page': 1, 'parser': 'gametime' })}}">Par temps de jeu</a><br/><br/>
+        {% for i in 1..nbpages%}
+            {% if page == i %}
+                <strong style="font-size:20px; text-decoration:underline;">{{ i }}</strong>
+            {% else %}
+                <a style="font-size:18px; text-decoration:none; color:black;" href="{{ path('maxcraft_players', {'page': i, 'parser': parser })}}">
+                    {{ i }}
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    </body>
+</html>

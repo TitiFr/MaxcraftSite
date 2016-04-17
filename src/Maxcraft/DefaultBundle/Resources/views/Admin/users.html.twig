@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>
+            Maxcraft - Admin - Users
+        </title>
+    </head>
+
+    <body>
+    <div class="section">
+        <h1>Gestion des joueurs</h1>
+        <p>Voici la liste des joueurs.</p>
+        <table class="admintable">
+
+
+            <tr>
+                <th>Id</th>
+                <th>Pseudo</th>
+                <th>Année</th>
+                <th>Faction</th>
+
+                <th>Action</th>
+            </tr>
+
+
+            {% for user in users %}
+                <tr style="background-color:{% if user.actif %}rgb(182, 255, 124){% else %}rgb(190, 190, 190){% endif %};">
+                    <td>#{{ user.id }}</td>
+                    <td><a href="{{ path('profil', {'pseudo': user.username}) }}">{{ user.username }}</a></td>
+                    <td>
+
+                        {{ user.naissance }}
+
+                    </td>
+
+                    <td>
+                        {% if user.faction %}
+                            <a href="{{ path('maxcraft_faction', {'factionTag': user.faction.tag}) }}">{{ user.faction.tag }}</a>
+                        {% endif %}
+                    </td>
+
+
+                    <td><a href="{{ path('admin_edituser', {'userId' : user.id}) }}">Editer</a></td>
+
+                </tr>
+            {% endfor %}
+        </table>
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Maxcraft - Ajouter des droits, zone {{ zone.id }}</title>
+    </head>
+
+    <body>
+        <div>
+            <div class="section">
+                <h1>Ajouter des droits : {{ zone.name }}</h1>
+
+                <p>Ajoutez ici des citoyens pouvant <strong>builder</strong> ou <strong>cuboider</strong> votre parcelle.</p><br/>
+
+
+
+
+                <form class="form" method="POST" action="" >
+
+                    <label>Joueur<span class="input_r">Choisissez un joueur</span></label>
+
+
+                    <input type="text" id="form_pseudo" name="pseudo"/>
+
+                    <label>Droits<span class="input_r">Le niveau de droit du joueur</span></label>
+                    <select name="role">
+                        <option value="BUILD">Builder</option>
+                        <option value="CUBO">Cuboider</option>
+                    </select>
+
+
+
+                    <input style="display: block;width: 200px;  margin-bottom:10px;" type="submit" value="Ajouter ce joueur" class="button-bevel green"/>
+
+                </form>
+
+            </div>
+        </div>
+    </body>
+</html>

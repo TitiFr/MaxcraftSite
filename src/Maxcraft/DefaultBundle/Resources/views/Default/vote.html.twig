@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Maxcraft - Voter</title>
+    </head>
+
+    <body>
+    <div class="section">
+        <h1>Votez sur {{ dopped.title }}</h1>
+
+        <p>A chaque vote Maxcraft.fr vous récompense en vous offrant quelques PO's. Si vous votez plusieurs jours d'affilé vous gagnez plus :<br/>
+
+            {% if canvote %}
+                <a target="_BLANK" href="{{ dopped.url }}"><button class="button-bevel green" style="width:100%;" title="Voter sur {{ dopped.title }}">Voter (+ {{ mongain }} Po)</button></a>
+            {% else %}
+                <a target="_BLANK" href="{{ dopped.url }}"><button class="button-bevel red" style="width:100%;" title="Voter sur {{ dopped.title }}">Vous avez déjà voté aujourd'hui, merci !</button></a>
+
+            {% endif %}
+
+        </p>
+        <br/>
+        <p style="text-align:center;">
+            {% for gain in gains %}
+
+                <span {% if gain.gain == mongain %}style="text-decoration:underline;"{% endif %}>Pour <strong>{{ gain.jours }}</strong> jour(s) : <strong>{{ gain.gain }}</strong> POs</span><br/>
+            {% endfor %}
+
+            </span>
+            <br/>Chaque semaine le décompte est réinitialisé. <br/>
+            Merci d'aller jusqu'au bout, c'est pour le bien du serveur !
+        </p>
+
+
+
+
+
+    </div>
+
+    <div class="section">
+        <h1>Votez sur d'autres sites de classement</h1>
+
+        {% for site in voteforus %}
+            {% if not site.dopped %}
+                <a target="_BLANK" href="{{ site.url }}"><button class="button-bevel green" style="width:100%;">{{ site.title }}</button></a>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,9 @@
+<div class="graydiv" style="height:auto">
+    <h2>Le guide</h2>
+
+    {% for page in pages %}
+        <a href="{{ path('guide', {'page' : page.route}) }}"><button class="button-bevel {% if id == page.id %}green{% else %}cyan{% endif %}" style="width:100%;">{{ page.title }}</button></a>
+    {% endfor %}
+
+
+</div>

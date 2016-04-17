@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Maxcraft - Faction - Editer</title>
+    </head>
+
+    <body>
+    <div class="section">
+        <h1>Editer ma faction</h1>
+
+        <p>Editez les pramètres de votre faction depuis cette page.</p><br/>
+
+
+        <br/>
+
+
+
+        <form class="form" method="POST" action="" >
+
+            <label>Nom<span class="input_r">Le nom de votre faction.</span></label>
+            {{ form_widget(form.name) }}
+
+            <label>URL de l'avatar<span class="input_r">L'adresse de votre l'avatar.</span></label>
+            {{ form_widget(form.icon) }}
+
+            <label>Description<span class="input_r">Description visible sur votre page de faction.</span></label>
+            {{ form_widget(form.description) }}
+            <br/>
+
+            <label>Texte de recrutement<span class="input_r">Visible sur la page de demande d'entrée.</span></label>
+            {{ form_widget(form.joininfo) }}
+            <br/>
+
+            <label>Album affiché<span class="input_r">Visible sur la page de faction.</span></label>
+            {{ form_widget(form.album) }}
+
+
+
+            {{ form_widget(form) }}
+
+            <input style="display: block;width: 200px;  margin-bottom:10px;" type="submit" value="Enregistrer" class="button-bevel green"/>
+
+        </form>
+
+    </div>
+    </body>
+</html>

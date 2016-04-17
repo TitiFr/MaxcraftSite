@@ -1,0 +1,300 @@
+maxcraft_homepage:
+    path:     /
+    defaults: { _controller: MaxcraftDefaultBundle:Default:index, page: 1}
+    requirements:
+
+maxcraft_default_blog:
+    path:  /page/{page}
+    defaults: { _controller: MaxcraftDefaultBundle:Default:index, page: 1  }
+    requirements:
+        page:  \d+
+
+maxcraft_register:
+    path: /register
+    defaults: {_controller: MaxcraftDefaultBundle:Default:register}
+
+maxcraft_myalbums:
+    path: /albums
+    defaults: {_controller: MaxcraftDefaultBundle:User:myalbums}
+
+maxcraft_album_edit:
+    path: /album/{albumId}/edit
+    defaults: {_controller: MaxcraftDefaultBundle:User:editAlbum}
+    requirements:
+        albumId: \d+
+
+uploadimage:
+    path: /album/uploadimage/{albumId}
+    defaults: {_controller: MaxcraftDefaultBundle:Default:uploadImage}
+    requirements:
+        albumId: \d+
+
+albumsetimage:
+    pattern:  /album/{albumid}/setimage/{imageid}
+    defaults: { _controller: MaxcraftDefaultBundle:Default:changeAlbumImage }
+    requirements:
+        albumid: \d+
+        imageid: \d+
+
+maxcraft_album:
+    path:  /album/{albumId}
+    defaults: { _controller: MaxcraftDefaultBundle:Default:album }
+    requirements:
+        albumId:  \d+
+
+imageremove:
+    pattern:  /image/{imageid}/remove
+    defaults: { _controller: MaxcraftDefaultBundle:Default:removeImage }
+    requirements:
+        imageid:  \d+
+
+profil:
+    path: /profil/{pseudo}
+    defaults: {_controller: MaxcraftDefaultBundle:User:profil}
+
+editprofil:
+    path: /profil/edit/{pseudo}
+    defaults: {_controller: MaxcraftDefaultBundle:User:editProfil}
+
+admin_news:
+    path: /admin/news
+    defaults: {_controller: MaxcraftDefaultBundle:Admin:news}
+
+admin_news_create:
+    path: /admin/news/create
+    defaults: {_controller: MaxcraftDefaultBundle:Admin:newNews, newsId:null}
+
+admin_news_edit:
+    path: /admin/news/{newsId}/edit
+    defaults: {_controller: MaxcraftDefaultBundle:Admin:newNews}
+    requirements:
+        newsId: \d+
+
+admin_infos:
+    path: /admin/infos
+    defaults: {_controller: MaxcraftDefaultBundle:Admin:infos}
+
+quitfaction:
+    path:  /faction/quitter/{validate}
+    defaults: { _controller: MaxcraftDefaultBundle:Faction:quitfaction, validate:false }
+
+maxcraft_faction:
+    path: /faction/{factionTag}
+    defaults: {_controller: MaxcraftDefaultBundle:Faction:infos}
+
+maxcraft_faction_create:
+    path: /createfaction
+    defaults: {_controller: MaxcraftDefaultBundle:Faction:createFaction}
+
+
+
+maxcraft_parametres:                                                    # A FAIRE !!!!!
+    path: /parametres
+    defaults: {_controller: MaxcraftDefaultBundle:User:parametres}
+
+maxcraft_bugreport:
+    path: /bugreport
+    defaults: {_controller: MaxcraftDefaultBundle:User:bugReport}
+
+maxcraft_players:
+    pattern:  /les-joueurs/{parser}/{page}
+    defaults: { _controller: MaxcraftDefaultBundle:Default:players, parser: 'date', page: 1}
+
+maxcraft_factionslist:
+    path: /factions
+    defaults: {_controller: MaxcraftDefaultBundle:Faction:factionsList}
+
+maxcraft_donjons:                                                             #A FAIRE !!!!
+    path: /donjons
+    defaults: {_controller: MaxcraftDefaultBundle:Default:donjons}
+
+maxcraft_shop:                                                                #A FAIRE !!!!
+    path: /shop
+    defaults: {_controller: MaxcraftDefaultBundle:Shop:shop}
+
+maxcraft_vote:
+    path: /voter
+    defaults: {_controller: MaxcraftDefaultBundle:Default:vote}
+
+maxcraft_messages:
+    path: /mp
+    defaults: {_controller: MaxcraftDefaultBundle:User:mp}
+
+maxcraft_notifications:
+    path: /notifs
+    defaults: {_controller: MaxcraftDefaultBundle:User:notifs}
+
+answermp:
+    path: /mp/reply/{mpId}
+    defaults: {_controller: MaxcraftDefaultBundle:User:newMp, pseudo: null, type: null}
+    requirements:
+      mpId: \d+
+
+newmp:
+    path: /mp/nouveau/{pseudo}/{type}
+    defaults: { _controller: MaxcraftDefaultBundle:User:newmp, pseudo:null, mpId:null, type:null  }
+
+acceptrequest:
+    path: /acceptrequest/{mpId}
+    defaults: {_controller: MaxcraftDefaultBundle:Faction:acceptrequest}
+    requirements:
+      mpId: \d+
+
+acceptalliance:
+    path: /acceptalliance/{mpId}
+    defaults: {_controller: MaxcraftDefaultBundle:Faction:acceptalliance}
+    requirements:
+      mpId: \d+
+
+factionrequest:
+    path:  /faction/{factionTag}/request
+    defaults: { _controller: MaxcraftDefaultBundle:Faction:factionrequest  }
+
+faction_editmember:
+    path:  /faction/{factionTag}/editmember/{userId}
+    defaults: { _controller: MaxcraftDefaultBundle:Faction:editmember  }
+
+faction_kickmember:
+    pattern:  /faction/{factionTag}/kickmember/{userId}
+    defaults: { _controller: MaxcraftDefaultBundle:Faction:kickmember  }
+
+faction_edit:
+    path: /faction/{factionTag}/edit
+    defaults: {_controller: MaxcraftDefaultBundle:Faction:editfaction}
+
+admin_users:
+    path:  /admin/users
+    defaults: { _controller: MaxcraftDefaultBundle:Admin:users }
+
+
+admin_edituser:
+    path:  /admin/joueurs/editer/{userId}
+    defaults: {_controller: MaxcraftDefaultBundle:Admin:editUser}
+    requirements:
+      userId: \d+
+
+playerfinder:
+    path:  /find
+    defaults: { _controller: MaxcraftDefaultBundle:Default:playerFinder }
+
+guide:
+    path:  /guide/{page}
+    defaults: { _controller: MaxcraftDefaultBundle:Guide:guide }
+
+admin_guide:
+    path:  /admin/guide
+    defaults: { _controller: MaxcraftDefaultBundle:Admin:guide }
+
+admin_editpage:
+    path:  /admin/guide/editer/{pageId}
+    defaults: { _controller: MaxcraftDefaultBundle:Guide:editpage }
+    requirements:
+      pageId: \d+
+
+admin_newpage:
+    path:  /admin/guide/newpage
+    defaults: { _controller: MaxcraftDefaultBundle:Guide:editpage, pageId:null }
+
+admin_sections:
+    path:  /admin/guide/{page}/sections
+    defaults: { _controller: MaxcraftDefaultBundle:Guide:sections }
+
+admin_editsection:
+    path:  /admin/guide/section/{sectionId}/editer
+    defaults: { _controller: MaxcraftDefaultBundle:Guide:editsection }
+    requirements:
+      sectionId: \d+
+
+admin_newsection:
+    path:  /admin/guide/newsection
+    defaults: { _controller: MaxcraftDefaultBundle:Guide:editsection, id:null }
+
+admin_removesection:
+    path:  /admin/guide/section/{sectionId}/remove
+    defaults: { _controller: MaxcraftDefaultBundle:Guide:removeSection }
+    requirements:
+      sectionId: \d+
+
+admin_removepage:
+    path:  /admin/guide/page/{pageId}/supprimer
+    defaults: { _controller: MaxcraftDefaultBundle:Guide:removePage }
+    requirements:
+      pageId: \d+
+
+progressbar:
+    path:  /progressbar/{long}x{h}/{value}/{total}/{color}/bar.png/{inversed}
+    defaults: { _controller: MaxcraftDefaultBundle:Default:progressBar, color: 'green', inversed: null }
+
+addfactionenemy:
+    path:  /faction/{factionTag}/enemy
+    defaults: { _controller: MaxcraftDefaultBundle:Faction:addFactionEnemy }
+
+removefactionstate:
+    path:  /faction/{factionTag}/neutre
+    defaults: { _controller: MaxcraftDefaultBundle:Faction:removeFactionState }
+
+parcelle:
+    path:  /parcelle/{zoneId}
+    defaults: { _controller: MaxcraftDefaultBundle:Zones:parcelle  }
+    requirements:
+      zoneId: \d+
+
+admin_buglist:
+    path:  /admin/bugs
+    defaults: { _controller: MaxcraftDefaultBundle:Admin:buglist  }
+
+admin_bugswitchfixed:
+    path:  /admin/bugs/{bugId}/switch
+    defaults: { _controller: MaxcraftDefaultBundle:Admin:bugswitchfixed  }
+    requirements:
+      bugId: \d+
+
+editparcelle:
+    path:  /parcelle/{zoneId}/editer
+    defaults: { _controller: MaxcraftDefaultBundle:Zones:editParcelle  }
+    requirements:
+      zoneId: \d+
+
+newzoneuser:
+    path:  /parcelle/{zoneId}/ajouter-des-droits
+    defaults: { _controller: MaxcraftDefaultBundle:Zones:newZoneUser }
+    requirements:
+          zoneId: \d+
+
+removezoneuser:
+    path:  /parcelle/removezoneuser/{id}
+    defaults: { _controller: MaxcraftDefaultBundle:Zones:removeZoneUser }
+    requirements:
+          id: \d+
+
+admin_parcelles:
+    path:  /admin/parcelles
+    defaults: { _controller: MaxcraftDefaultBundle:Admin:parcelles }
+
+ventes:
+    path:  /ventes
+    defaults: { _controller: MaxcraftDefaultBundle:Zones:ventes }
+
+
+#en cours
+
+
+
+
+test_menu:
+    path: /test/menu
+    defaults: {_controller: MaxcraftDefaultBundle:Default:menu}
+
+test_wrap:
+    path: /test/wrap
+    defaults: {_controller: MaxcraftDefaultBundle:Default:wrap}
+
+test_addfaction:
+    path: /test/{pseudo}/add/{tag}
+    defaults: {_controller: MaxcraftDefaultBundle:Faction:testAdd}
+
+test_addZone:
+    path: /test/newZone/{name}/{points}/{world}
+    defaults: {_controller: MaxcraftDefaultBundle:Default:testAddZone}
+
+

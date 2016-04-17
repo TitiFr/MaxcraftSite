@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Maxcraft - Editer Parcelle {{ zone.id }}</title>
+    </head>
+
+    <body>
+        <div>
+            <div class="section">
+                <h1>Editer la zone : {{ zone.name }}</h1>
+
+                <p>Editez ici les informations de la zone</p><br/>
+
+
+
+
+                <form class="form" method="POST" action="" >
+
+                    <label>Nom<span class="input_r">Choisissez un nom de parcelle</span></label>
+                    {{ form_widget(form.name) }}
+
+
+                    <label>Description<span class="input_r">Description visible sur la page de parcelle</span></label>
+                    {{ form_widget(form.description) }}
+                    <br/>
+
+                    {{ form_widget(form) }}
+
+                    <input style="display: block;width: 200px;  margin-bottom:10px;" type="submit" value="Mettre à jour" class="button-bevel green"/>
+
+                </form>
+
+            </div>
+
+        </div>
+    </body>
+</html>

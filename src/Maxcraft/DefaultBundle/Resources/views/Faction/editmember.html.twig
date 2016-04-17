@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Maxcraft - Editer les rôles ({{ faction.tag }})</title>
+    </head>
+
+    <body>
+        <div>
+            <p>User : {{ user.username }}</p>
+            <p>Fondateur : {{ faction.owner.username }}</p>
+            <p>Pour la faction : {{ faction.name }}</p>
+        </div>
+
+        <div>
+            {{ form(form) }}
+        </div>
+    </body>
+</html>

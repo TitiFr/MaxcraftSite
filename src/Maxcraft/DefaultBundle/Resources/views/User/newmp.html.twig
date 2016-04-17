@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Maxcraft - Nouveau Message</title>
+    </head>
+
+    <body>
+    <div class="section">
+        <h1>Envoyer un MP</h1>
+
+        <p>Envoyez un message privé à un joueur depuis ce formulaire. Merci de ne pas faire de publicité et de ne pas spammer les joueurs.</p><br/>
+        {% if type == 'requestallie' %}
+            <p style="color:green;">Demandez ici une alliance au chef de la faction concernée.</p><br/>
+        {% endif %}
+
+        <form class="form" method="POST" action="{{ path('newmp', {'type': type, 'pseudo': 'nopseudo'}) }}" >
+
+            <label>Pseudo<span class="input_r">Choisisez un destinataire.</span></label>
+            {{ form_widget(form.pseudo) }}
+
+            <label>Sujet<span class="input_r">Annoncez un sujet</span></label>
+            {{ form_widget(form.topic) }}
+
+            <label>Message<span class="input_r">Ecrivez votre message ici.</span></label>
+            {{ form_widget(form.content) }}
+
+
+            {{ form_widget(form) }}
+
+            <input style="display: block;width: 200px;  margin-bottom:10px;" type="submit" value="Envoyer par MP" class="button-bevel green"/>
+
+        </form>
+
+    </div>
+    </body>
+</html>

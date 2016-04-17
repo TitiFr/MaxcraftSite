@@ -1,0 +1,31 @@
+{% extends "MaxcraftDefaultBundle:Others:layout.html.twig" %}
+
+{% block title %}Admin - Guide - Editer page{% endblock %}
+
+{% block corps %}
+    <div class="section">
+        <h1>Editer une page</h1>
+
+        <form class="form" method="POST" action="" >
+
+            <label>Titre<span class="input_r"></span></label>
+            {{ form_widget(form.title) }}
+
+            <label>Route<span class="input_r">Choisissez l'url : /guide/xxx .</span></label>
+            {{ form_widget(form.route) }}
+
+            <label>Ordre<span class="input_r">Ordre par rapport aux autres pages.</span></label>
+            {{ form_widget(form.ordervalue) }}
+
+            <label>Publication<span class="input_r">Si oui la page est dans le menu.</span></label>
+            {{ form_widget(form.display) }}
+
+
+            {{ form_widget(form) }}
+
+            <input style="display: block;width: 200px;  margin-bottom:10px;" type="submit" value="Enregistrer la page" class="button-bevel green"/>
+
+        </form>
+
+    </div>
+{% endblock %}

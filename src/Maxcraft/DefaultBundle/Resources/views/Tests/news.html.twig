@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Maxcarft.fr - News</title>
+    </head>
+
+    <body>
+
+        {% for new in news %}
+        <h1>{{ new.title }}</h1>
+        <p>News écrite par <strong>{{ new.user.username }}</strong>, le <em>{{ new.date|date('d/m/Y') }}</em></p>
+        <p>{{ new.content }}</p>
+        {% endfor %}
+
+    </body>
+</html>

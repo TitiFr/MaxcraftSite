@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>Maxcraft - MPs</title>
+    </head>
+
+    <body>
+    <div class="section">
+        <h1>MP reçus</h1>
+        {% if mps %}
+            <p>Voici la liste de vos MP reçus.</p><br/>
+        {% else %}
+            <p>Vous n'avez reçu aucun MP.</p>
+        {% endif %}
+
+        {% for mp in mps %}
+
+            <div class="mp">
+                <div class="mphead" {% if mp.view and mp.type == 'NORMAL' %} style="background-color: rgb(124, 124, 124);"{% endif %}{% if mp.type == 'FACTION_REQUEST'%}style="background-color: rgb(10, 138, 138);"{% endif %} {% if mp.type == 'REQUESTALLIE'%}style="background-color: rgb(104, 163, 0);"{% endif %} >
+                    <div class="mpdate">{{ mp.date|date('d/m - H:i') }}</div>
+                    <div class="mpsender">Par <a  href="{{ path('profil', {'pseudo' : mp.sender.username}) }}"><em>{{ mp.sender.username }}</em></a></div>
+                    <div class="mpsubject">{{ mp.topic }}</div>
+                </div>
+
+                <div class="mpcontent">
+
+                    {{ mp.content|raw }}
+
+
+                    <a style="text-decoration:none;" href="{{ path('answermp', {'mpId': mp.id}) }}"><div {% if mp.view %} style="background-color: rgb(124, 124, 124);"{% endif %}{% if mp.type == 'FACTION_REQUEST'%}style="background-color: rgb(10, 138, 138);"{% endif %} class="mpreply">Répondre</div></a>
+
+                    {% if mp.type == 'FACTION_REQUEST'%}
+                        <a style="text-decoration:none;" href="{{ path('acceptrequest', {'mpId': mp.id}) }}"><div style="background-color: rgb(10, 138, 138);" class="mpreply">Accepter</div></a>
+                    {% endif %}
+
+                    {% if mp.type == 'REQUESTALLIE'%}
+                        <a style="text-decoration:none;" href="{{ path('acceptalliance', {'mpId': mp.id}) }}"><div style="background-color: rgb(104, 163, 0);" class="mpreply">S'allier</div></a>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <div class="section">
+        <h1>MP envoyés</h1>
+        {% if mps %}
+            <p>Voici la liste de vos MP envoyés.</p><br/>
+        {% else %}
+            <p>Vous n'avez envoyé aucun MP.</p>
+        {% endif %}
+
+        {% for mp in mpsends %}
+
+            <div class="mp">
+                <div class="mphead" {% if mp.view and mp.type == 'NORMAL'%} style="background-color: rgb(124, 124, 124);"{% endif %}{% if mp.type == 'FACTION_REQUEST'%}style="background-color: rgb(10, 138, 138);"{% endif %}{% if mp.type == 'REQUESTALLIE'%}style="background-color: rgb(104, 163, 0);"{% endif %}>
+                    <div class="mpdate">{{ mp.date|date('d/m - H:i') }}</div>
+                    <div class="mpsender">A <a style="color:white" href="{{ path('profil', {'pseudo' : mp.target.username}) }}"><em>{{ mp.target.username }}</em></a></div>
+                    <div class="mpsubject">{{ mp.topic }}</div>
+                </div>
+
+                <div class="mpcontent">
+
+                    {{ mp.content|raw }}
+
+
+
+
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+    </body>
+</html>

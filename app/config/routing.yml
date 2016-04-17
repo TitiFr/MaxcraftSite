@@ -1,0 +1,14 @@
+login_check:
+    path:   /login_check
+
+logout:
+    path:   /logout
+
+maxcraft_default:
+    resource: "@MaxcraftDefaultBundle/Resources/config/routing.yml"
+    prefix:   /
+
+kms_froala_editor:
+    resource: "@KMSFroalaEditorBundle/Resources/config/routing.yml"
+    prefix:   /froalaeditor
+

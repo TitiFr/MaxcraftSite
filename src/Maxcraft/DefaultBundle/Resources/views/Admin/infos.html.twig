@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Maxcraft - Admin - Infos</title>
+    </head>
+
+    <body>
+        <div>
+            <h2>Economie</h2>
+            <table>
+                <tr>
+                  <td>POs au total</td>
+                  <td>{{ ttPOs }}</td>
+                </tr>
+                <tr>
+                    <td>POs en circulation</td>
+                    <td>{{ circulation }}</td>
+                </tr>
+                <tr>
+                    <td>Moyenne par joueur</td>
+                    <td>{{ moyPerUsers }}</td>
+                </tr>
+                <tr>
+                    <td>Moyenne par joueur actif</td>
+                    <td>{{ moyPerActives }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            <h2>Joueurs</h2>
+            <table>
+                <tr>
+                    <td>Joueurs au total</td>
+                    <td>{{ totalUsers }}</td>
+                </tr>
+                <tr>
+                    <td>Joueurs actifs</td>
+                    <td>{{ activeUsers }}</td>
+                </tr>
+                <tr>
+                    <td>Joueurs inactifs</td>
+                    <td>{{ inactivesUser }}</td>
+                </tr>
+                <tr>
+                    <td>Part des actifs</td>
+                    <td>{{ actifsPercent }}%</td>
+                </tr>
+                <tr>
+                    <td>Nombre dormants (50 jours)</td>
+                    <td>{{ nbsleeping }}</td>
+                </tr>
+                <tr>
+                    <td>Part des dormants</td>
+                    <td>{{ percentSleepingU }}%</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

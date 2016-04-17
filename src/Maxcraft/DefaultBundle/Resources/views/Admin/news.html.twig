@@ -1,0 +1,37 @@
+<html>
+    <header>
+        <title>Maxcraft - Admin - News</title>
+    </header>
+
+    <body>
+        <div class="section">
+            <h1>Gestion des news</h1>
+            <p>Voici la liste des news.</p>
+             <table class="admintable">
+                <tr>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Album</th>
+                    <th>Actions</th>
+                 </tr>
+
+
+                {% for new in newslist %}
+                    <tr style="background-color:{% if new.display %}rgb(213, 255, 200){% else %}rgb(209, 209, 209){% endif %};">
+                     <td>#{{ new.id }}</td>
+                     <td>{{ new.date|date('d/m') }}</td>
+                     <td>{{ new.title }}</td>
+                     <td>Par {{ new.user.username }}</td>
+                     <td>{{ new.album.id }}</td>
+                     <td><a href="{{ path('admin_news_edit', {'newsId': new.id}) }}">Editer</a></td>
+
+                    </tr>
+                {% endfor %}
+             </table>
+
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Maxcraft - Admin - Parcelles</title>
+    </head>
+
+    <body>
+    <div class="section">
+        <h1>Liste des parcelles</h1>
+
+        <table class="admintable">
+
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+
+                <th>Propriétaire</th>
+                <th>Parent</th>
+                <th>Coords</th>
+            </tr>
+
+
+            {% for parcelle in parcelles %}
+
+                <tr {% if parcelle.owner and not parcelle.owner.actif %} style="background-color: rgba(255, 0, 0, 0.44);"{% endif %}>
+                    <td>#{{ parcelle.id }}</td>
+                    <td ><a style="color:#{{ parcelle.color }}" href="{{ path('parcelle', {'zoneId': parcelle.id}) }}">{{ parcelle.name }}</a></td>
+                    <td>
+                        {% if parcelle.owner %}
+                            <a href="{{ path('profil', {'pseudo': parcelle.owner.username}) }}">{{ parcelle.owner.username }}</a>
+
+
+                        {% endif %}
+
+                    </td>
+                    <td>{% if  parcelle.parent %} #{{parcelle.parent.id}} {% endif %}</td>
+                    <td>{{ parcelle.center.x }};{{ parcelle.center.z }} ({{ parcelle.world }})</td>
+                </tr>
+
+
+            {% endfor %}
+
+        </table>
+
+
+    </div>
+    </body>
+</html>

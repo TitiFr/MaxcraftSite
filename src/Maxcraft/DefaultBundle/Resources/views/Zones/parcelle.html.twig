@@ -1,0 +1,144 @@
+<html>
+    <head>
+        <title>Maxcraft - Parcelle {{ zone.id }}</title>
+    </head>
+
+    <body>
+        <div>
+            <div class="section" id="profil">
+                <h1><span style=" font-family:'Pirata One', cursive;font-size: 26px; color:#{{ zone.color }}">{{ zone.displayType }}</span> : {{ zone.name }}
+                </h1>
+
+                <p>Localisation : <strong>{% if zone.parent %} <a href="{{ path('parcelle', {'id': zone.parent.id}) }}">{{ zone.parent.name }}</a> {% else %} Maxcraft {% endif %}</strong></p>
+                <p>Coordonnées : {{ zone.coords.x }};{{ zone.coords.z }} ({{ zone.world }})</p>
+                <p style="ligne-height:25px;">Tags : {% for tag in zone.tagsArray %}<span style="color:#EEEEEE; display:inline-block;font-size:13px; font-weight:bold; margin-right:5px;margin-top:5px; padding:2px; padding-left:4px; padding-right:4px;background-color:#666666; -webkit-border-radius: 2px;-moz-border-radius: 2px;border-radius: 2px;">{{tag}}</span>{% endfor %}</span></p>
+
+                {% if vente %}
+                    <p title="Se rendre sur place pour acheter la parcelle." style="margin-top:10px;padding:5px; background-color:rgba(255, 102, 0, 0.62); font-weight:bold;" >En vente actuellement : <strong style="color:white;">{{ vente.price|number_format(0, ',', ' ') }} POs</strong></p>
+                {% endif %}
+
+                {% if not zone.owner  %}<p>Propriétaire : Aucun</p>{% endif %}
+
+                {% if zone.owner %}
+                    <br/>
+                    <div class="membre_faction">
+                        <a href="{{ path('profil', {'pseudo': zone.owner.username}) }}"><img class="tete_membre" src="{{zone.owner.avatar(60) }}" width="60" height="60"/></a>
+                        <a href="{{ path('profil', {'pseudo': zone.owner.username}) }}"><p class="name_membre" >{{ zone.owner.username }}</p></a>
+
+                        <p class="grade_membre">Propriétaire</p>
+                    </div>
+
+                {% endif %}
+
+                <br/>
+            </div>
+
+
+            {% if zone.description %}
+                <div class="section" id="pageprofil">
+                    <h1>Description</h1>
+                    {{ zone.description|raw }}
+                </div>
+            {% endif %}
+
+            {#{% if shops %}
+                <div class="section">
+                    <h1>Shops </h1>
+                {% for shop in shops %}
+                        {% render "MaxcraftDefaultBundle:Default:shop" with {'shop':shop} %}
+                    {% endfor %}
+                </div>
+            {% endif %}#}
+
+            {% if zone.album %}
+
+                <div class="section">
+                    <h1>{{ zone.album.name }}
+                        {% if app.user == zone.album.user %}
+                            <a href="{{ path('maxcraft_album_edit', {'albumId': zone.album.id}) }}" style="text-decoration:none; color: rgb(51, 121, 12); float:right;line-height: 28px;">Editer l'album</a>
+                        {% endif %}
+                    </h1>
+                    <p>{{ zone.album.description }}</p><br/>
+
+                    <div id="album" style="margin-left:-10px;">
+                        {% if zone.album.images %}
+                            {% for image in zone.album.images %}
+                                <img src="{{ asset(image.sliderPath) }}" alt="{{ image.name }}"/>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+
+            <div class="section">
+                <h3>Cuboiders</h3><br/>
+                    {% if not cuboiders  %}<p>Il n'y a aucun cuboider.</p><br/>
+
+                    {% else %}
+
+                        {% for zonemember in cuboiders %}
+                            <div class="membre_faction">
+                                <a href="{{ path('profil', {'pseudo': zonemember.user.username}) }}"><img class="tete_membre" src="{{zonemember.user.avatar(60) }}" width="60" height="60"/></a>
+                                <a href="{{ path('profil', {'pseudo': zonemember.user.username}) }}"><p class="name_membre" >{{ zonemember.user.username }}</p></a>
+
+                                <p class="grade_membre">Cuboider {% if zone.owner == app.user or app.user.role == 'ROLE_ADMIN' %}<a href="{{ path('removezoneuser', {'id': zonemember.id}) }}">[X]</a>{% endif %}</p>
+                            </div>
+                        {% endfor %}
+
+                    {% endif %}
+
+            </div>
+
+            <div class="section">
+
+                <h3>Builders</h3><br/>
+
+                    {% if not builders  %}<p>Il n'y a aucun builder.</p>
+
+                    {% else %}
+
+                        {% for zonemember in builders %}
+                            <div class="membre_faction">
+                                <a href="{{ path('profil', {'pseudo': zonemember.user.username}) }}"><img class="tete_membre" src="{{zonemember.user.avatar(60) }}" width="60" height="60"/></a>
+                                <a href="{{ path('profil', {'pseudo': zonemember.user.username}) }}"><p class="name_membre" >{{ zonemember.user.username }}</p></a>
+
+                                <p class="grade_membre">Builder {% if zone.owner == app.user or app.user.role == 'ROLE_ADMIN' %}<a href="{{ path('removezoneuser', {'id': zonemember.id}) }}">[X]</a>{% endif %}</p>
+                            </div>
+                        {% endfor %}
+
+                    {% endif %}
+
+            </div>
+
+
+            {% if filles %}
+                <div class="section">
+                    <h3>Zones internes</h3><br/>
+
+
+                        <div class="parcelle_gen">
+
+                            {% for parcelle in filles %}
+
+                                {{ render(controller('MaxcraftDefaultBundle:Zones:zone', {'zone' : parcelle})) }}
+
+                            {% endfor %}
+
+                        </div>
+                        <br/>
+
+
+                </div>
+
+            {% endif %}
+
+            {#<div class="section">
+                <h1>Aperçu sur la map</h1>
+                <iframe style="border:none; width:100%; height:400px;" src="{{ mapurl }}{{ zone.map }}"></iframe>
+            </div>#}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Maxcraft - Admin - Bugs Reportés</title>
+    </head>
+
+    <body>
+        <div>
+            <div class="section">
+
+                <h1>Liste des bugs reportés</h1>
+                <p>Voici les bugs reportés par les joueurs.</p>
+                <table class="admintable">
+
+
+
+                    {% for bug in bugs %}
+                        <tr style="background-color:{% if bug.fixed %}rgba(44, 221, 0, 0.49){% else %}rgba(255, 21, 21, 0.49){% endif %};">
+                            <td>#{{ bug.id }}</td>
+                            <td>{{ bug.date|date('d/m/Y H:i') }}</td>
+                            <td>Par <a href="{{ path('profil', {'pseudo': bug.user.username}) }}"><strong>{{ bug.user.username }}</strong></a></td>
+                            <td><strong>{{ bug.type }}</strong></td>
+
+                        </tr>
+
+                        <tr>
+                            <td colspan="3">{{ bug.content|nl2br }}</td>
+                            <td>{% if bug.fixed %}<a href="{{ path('admin_bugswitchfixed', {'bugId': bug.id}) }}">-> Pas fixé</a>{% else %}<a href="{{ path('admin_bugswitchfixed', {'bugId': bug.id}) }}">-> Fixé</a>{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+
+            </div>
+        </div>
+    </body>
+</html>

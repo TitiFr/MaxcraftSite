@@ -1,0 +1,28 @@
+
+        <div id="headertop">
+            <div id="usual_bar">
+                <div id="static_bar">
+                    <img src="{{  asset('images/separateur.jpg') }}" style="float: left;"/>
+                    <img class="icon" src="{{  asset('images/player.png') }}"/>
+                    <div class="label" title="{% for user in onlineusers %}{{user.player}} {% endfor %}">Connectés : <strong>{{ connected }}/200</strong></div>
+                    <img class="icon" src="{{  asset('images/player.png') }}"/>
+                    <div class="label">Joueurs : <strong>{{ totalplayers }}</strong></div>
+                    <img class="icon" src="{{  asset('images/visite.png') }}"/>
+                    <div class="label">Version : <strong>{{ version }}</strong></div>
+                    <a href="{{ facebook }}" title="Facebook"><img class="icon" src="{{  asset('images/fb.png') }}"/></a>
+                    <a href="{{ twitter }}" title="Twitter"><img class="icon" style="margin-left:0px;" src="{{  asset('images/twitter.png') }}"/></a>
+                    <a href="{{ youtube }}" title="YouTube"><img class="icon" style="margin-left:0px;" src="{{  asset('images/youtube.png') }}"/></a>
+
+                    <img src="{{  asset('images/separateur.jpg') }}" style="float: left;"/>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a style="color:#EEEEEE" href="">
+                    <img class="icon" src="https://minotar.net/avatar/{{ app.user.username }}/25"/>
+                    <div class="label"><strong>{{ app.user.username }}</strong></div>
+                    </a>
+
+                    <a href="{{ path('logout') }}"><img class="icon" width="26" height="26" src="{{  asset('images/exit.png') }}"/></a>
+                    {% endif %}
+                    <img src="{{  asset('images/separateur.jpg') }}" style="float: right;"/>
+                </div>
+            </div>
+        </div>

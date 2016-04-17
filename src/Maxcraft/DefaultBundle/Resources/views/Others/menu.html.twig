@@ -1,0 +1,76 @@
+
+
+
+
+        <div class="ribbon-wrapper">
+            <div class="ribbon-front" id="menu">
+                {% if is_granted ("IS_AUTHENTICATED_REMEMBERED") %}
+                    <ul>
+                        <li class="mainmenu" style="width:132px;"><a href="{{ path('maxcraft_homepage') }}">Accueil</a></li>
+                        <li class="mainmenu">Mon perso {% if alert %}<span class="alertpin" >(!)</span>{% endif %}
+                            <ul class="submenu">
+                                <li><a href="{{ path('profil', {'pseudo': app.user.username}) }}">Profil</a></li>
+                                <li><a href="{{ path('profil', {'pseudo': app.user.username}) }}#parcelle_list">Mes parcelles</a></li>
+                                {% if app.user.faction %}
+                                    <li><a href="{{ path('maxcraft_faction',{'factionTag': app.user.faction.tag}) }}">{{ app.user.faction.tag }}</a></li>
+                                {% else %}
+                                    <li><a href="{{ path('maxcraft_faction_create') }}">Créer une faction</a></li>
+                                {% endif %}
+                                <li><a href="{{ path('maxcraft_myalbums') }}">Mes screens</a></li>
+                                <li style="font-weight: bold"><a href="{{ path('maxcraft_messages') }}">Messages ({{ nbmp }})</a></li>
+                                <li style="font-weight: bold"><a href="{{ path('maxcraft_notifications') }}">Notifications ({{ nbnotif }})</a></li>
+                                <li><a href="{{  path('maxcraft_parametres') }}">Paramètres</a></li>
+                                <li><a href="{{ path('maxcraft_bugreport') }}">Reporter bug</a></li>
+                            </ul>
+                        </li>
+                        <li class="mainmenu">Infos
+                            <ul class="submenu">
+                                <li><a href="{{ path('maxcraft_players') }}">Les joueurs</a></li>
+                                <li><a href="{{ path('maxcraft_factionslist') }}">Les factions</a></li>
+                                <li>{#<a href="{{ path('maxcraft_donjons') }}">#}[x] Les donjons{#</a>#}</li>
+                                <li>{#<a href="{{ path('maxcraft_ventes') }}">#}[x] Zones à vendre{#</a>#}</li>
+                                <li>{#<a href="{{ path('maxcraft_shop') }}">#}[x] Shops{#</a>#}</li>
+                                <a href="{{ path('guide', {'page': 'administration'}) }}"><li>L' équipe</li></a>
+                            </ul>
+                        </li>
+                        <div id="maxcraft"></div>
+                        <li class="mainmenu" style="width:131px;"><a target="_blank" href="http://forum.maxcraft.fr">Forums</a></li>
+                        <li class="mainmenu" style="width:132px;"><a herf="">Guide </a>
+                            <ul class="submenu">
+                                {% for page in pages %}
+                                    <a href="{{ path('guide', {'page': page.route}) }}"><li>{{ page.title }}</li></a>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="mainmenu"><a href="{{ path('maxcraft_vote') }}">Voter</a></li>
+                    </ul>
+                {% else %}
+                    <ul>
+                        <li class="mainmenu" style="width:132px;"><a href="{{ path('maxcraft_homepage') }}">Accueil</a></li>
+                        <li class="mainmenu">Règlements</li>
+                        <li class="mainmenu">Infos
+                            <ul class="submenu">
+                                <li><a href="{{ path('maxcraft_players') }}">Les joueurs</a></li>
+                                <li><a href="{{ path('maxcraft_factionslist') }}">Les factions</a></li>
+                                <li><a href="{{ path('maxcraft_donjons') }}">Les donjons</a></li>
+                                <li>Administration</li>
+                            </ul>
+                        </li>
+                        <div id="maxcraft"></div>
+                        <li class="mainmenu" style="width:131px;"><a target="_blank" href="http://forum.maxcraft.fr">Forums</a></li>
+                        <li class="mainmenu" style="width:132px;"><a href="">Guide </a>
+                            <ul>
+                                {% for page in pages %}
+                                    <a href="{{ path('guide', {'page': page.route}) }}"><li>{{ page.title }}</li></a>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="mainmenu"><a href="{{ path('maxcraft_register') }}">S'inscrire</a></li>
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="ribbon-edge-topleft"></div>
+            <div class="ribbon-edge-topright"></div>
+            <div class="ribbon-edge-bottomleft"></div>
+            <div class="ribbon-edge-bottomright"></div>
+        </div>

@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Maxcraft - Admin - Guide</title>
+    </head>
+
+    <body>
+    <div class="section">
+        <h1>Editer le guide</h1>
+        <p>Voici la liste des pages actuelles.</p>
+
+        <table class="admintable">
+
+
+            <tr>
+                <th>Ordre</th>
+                <th>Titre</th>
+
+
+                <th>Actions</th>
+            </tr>
+
+
+            {% for page in pages %}
+                <tr {% if not page.display %}style="background-color:rgb(255, 166, 166);"{% endif %}>
+                    <td>{{ page.ordervalue }}</td>
+                    <td>{{ page.title }}</td>
+
+
+
+
+                    <td><a href="{{ path('admin_editpage', {'pageId':page.id}) }}">Editer</a> | <a href="{{ path('admin_sections', {'page': page.route}) }}">Editer les sections</a> | <a href="{{ path('guide', {'page': page.route}) }}">Voir</a> | <a href="{{ path('admin_removepage', {'pageId': page.id}) }}">Supprimer</a></td>
+
+                </tr>
+            {% endfor %}
+        </table>
+
+
+    </div>
+    </body>
+</html>

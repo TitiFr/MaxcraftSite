@@ -1,0 +1,37 @@
+{% extends "MaxcraftDefaultBundle:Others:layout.html.twig" %}
+
+{% block title %}Guide - {{ page.title }}{% endblock %}
+
+{% block corps %}
+
+    <div style="clear: both;height:0px;"></div>
+
+    <div id="gallerie">
+
+        {% render "MaxcraftDefaultBundle:Default:guideMenu" with {'id': page.id} %}
+        {{ render(controller("MaxcraftDefaultBundle:Guide:guideMenu",
+        { 'pageId': page.id })) }}
+
+        {{ render(controller("MaxcraftDefaultBundle:Default:wrap")) }}
+
+    </div>
+
+    {% for section in sections %}
+
+        <div class="section guidesection">
+            <h1>{{ section.title }}</h1>
+            {{ section.content|raw }}
+        </div>
+
+    {% endfor %}
+
+    {% if not sections %}
+
+        <div class="section">
+            <h1>Page vide</h1>
+            Cette page est vide.
+        </div>
+
+    {% endif %}
+
+{% endblock %}

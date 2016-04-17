@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Mx - Test - Comment</title>
+    </head>
+
+    <body>
+        <div>
+            {% for comment in comments %}
+            <p>
+                Commenttaire de {{ comment.user.username }}
+                <br/>
+                {{ comment.content }}
+            </p>
+            {% endfor %}
+        </div>
+    </body>
+</html>

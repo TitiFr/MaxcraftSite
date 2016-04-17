@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Maxcraft - Zones à Vendre</title>
+    </head>
+
+    <body>
+    <div class="section">
+        <h1>Les parcelles à vendre</h1>
+
+        {% if not ventes %}
+            <p>
+                Il n'y a pas de parcelle à vendre.
+            </p><br/>
+        {% else %}
+            <p>Il y a <strong>{{ nbventes }}</strong> parcelles à vendre, rendez vous sur une parcelle et cliquez sur le panneau de vente pour l'acheter.</p><br/>
+        {% endif %}
+
+        {% for vente in ventes %}
+
+            {{ render(controller("MaxcraftDefaultBundle:Zones:zone", {'zone' : vente.zone})) }}
+
+        {% endfor %}
+
+
+    </div>
+    </body>
+</html>

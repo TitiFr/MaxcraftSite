@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>Maxcraft - Admin - Edit user {{ user.username }}</title>
+    </head>
+
+    <body>
+    <div class="section">
+        <h1>Editer un joueur</h1>
+        <p>Voici la page de d'édition d'un joueur.</p><br/>
+
+        <form class="form" method="POST" action="" >
+
+
+
+            <label>Pseudo</label>
+
+            <input type="text" value="{{ user.username }}" readonly/>
+            <label>UUID</label>
+            <input type="text" value="{{ user.uuid }}" readonly/>
+
+            {% if user.faction %}
+                <label>Faction</label>
+
+                <input type="text" value="{{ user.faction.name }}" readonly/>
+
+            {% endif %}
+
+            <label>Email</label>
+            {{ form_widget(form.email) }}
+
+            <label>Mot de passe<span class="input_r">Ne rien mettre pour ne pas modifier.</span></label>
+            {{ form_widget(form.password) }}
+
+            <label>Role</label>
+            {{ form_widget(form.role) }}
+
+            <label>Année de naissance</label>
+            {{ form_widget(form.naissance) }}
+
+            <label>Loisirs</label>
+            {{ form_widget(form.loisirs) }}
+
+            <label>D'où vient il ?</label>
+            {{ form_widget(form.fromwhere) }}
+
+            <label>Activités</label>
+            {{ form_widget(form.activite) }}
+
+            <label>Profil</label>
+            {{ form_widget(form.profil) }}
+
+            <label>IP d'inscription</label>
+            {{ form_widget(form.ip) }}
+
+            <label>Joueur banni</label>
+            {{ form_widget(form.banned) }}
+
+            {{ form_widget(form) }}
+
+            <input style="display: block;width: 200px;  margin-bottom:10px;" type="submit" value="Enregistrer" class="button-bevel green"/>
+
+        </form>
+
+
+    </div>
+    </body>
+</html>

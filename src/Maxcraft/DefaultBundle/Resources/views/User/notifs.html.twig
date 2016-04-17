@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Maxcraft - Notifications</title>
+    </head>
+
+    <body>
+    <div class="section">
+        <h1>Mes notifications</h1>
+
+        <p>Vous recevez des notifications à chaque action effectuée vous concernant.</p><br/>
+
+        {% if not notifs %}
+
+        <p>Vous n'avez aucune notification.</p><br/>
+
+        {% else %}
+
+        {% for notif in notifs %}
+
+        {% if notif.view %}
+        <div class="notification">
+        {% else %}
+            <div class="notification" style="background-color: rgba(180, 255, 98, 0.43);">
+        {% endif %}
+
+                <div class="haut_notif">
+                    <img class="icone_notif" width="32" height="32" src="{{ asset(notif.icon) }}"/>
+                    <p class="titre_notif">{{ notif.category }}</p>
+                    <p style="float:right;color: rgb(82, 82, 82);">Le {{ notif.date|date('d M Y à H:i') }}</p>
+                </div>
+                <div class="texte_notif">
+                    <p>{{ notif.content|raw }}</p>
+                </div>
+            </div>
+
+        {% endfor %}
+
+
+        {% endif %}
+
+        </div>
+      </div>
+    </body>
+</html>

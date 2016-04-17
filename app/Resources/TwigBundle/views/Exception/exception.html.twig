@@ -1,0 +1,32 @@
+{% extends "MaxcraftDefaultBundle:Others:layout.html.twig" %}
+
+{% block title %}Erreur !{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{% block corps %}
+
+    <div style="clear: both;height:0;">
+
+    </div>
+    <div id="gallerie">
+
+        {{ render(controller("MaxcraftDefaultBundle:Default:wrap")) }}
+
+    </div>
+
+
+    <div class="section" id="profil">
+        <h1>Une erreur inattendue s'est produite !</h1>
+
+        <div id="avatar">
+            <img src="{{ asset('images/exception.png') }}"/>
+        </div>
+
+        <div id="infos">
+            {{ exception.message|nl2br|format_file_from_text }}
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Maxcraft - Album {{ album.id }}</title>
+
+        <link href="{{ asset('css/drop.css') }}" type="text/css" rel="stylesheet" />
+        <script src="{{ asset('js/dropzone.js') }}"></script>
+
+    </head>
+
+    <body>
+        <div>
+            <p>Album : {{ album.name }}</p>
+            <p><em>{{ album.description }}</em></p>
+            <br>
+            <p>Créé le {{ album.creationDate | date('d M Y à H:i')}} par {{ album.user.username }}</p><br>
+
+            {% for img in album.images %}
+
+                <img src="{{ asset(img.getWebPath()) }}" alt="{{ img.alt }}">
+                <p><a href="{{ path('albumsetimage', {'imageid': img.id, 'albumid' : img.album.id}) }}">Utiliser comme aperçu de l'album</a></p>
+                <p><a href="{{ path('imageremove', {'imageid' : img.id}) }}">Supprimer l'image</a></p>
+                <br>
+
+            {% endfor %}
+
+            <p>Publique : <em>{{ album.display }}</em></p>
+            <!-- bouton de suppression de l'album -->
+            <br><br>
+        </div>
+
+        <div>
+            <p>Uploader des screens !</p>
+            <br>
+            <form method="post" class="dropzone" action="{{ path('uploadimage', {'albumId' : album.id}) }}" enctype="multipart/form-data"></form>
+        </div>
+
+        <div>
+            <h2>Modifier l'album</h2>
+            {{ form(form) }}
+        </div>
+    </body>
+</html>

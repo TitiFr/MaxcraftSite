@@ -1,0 +1,42 @@
+<html>
+    <header>
+        <title>Maxcraft - News - New/Edit</title>
+    </header>
+
+    <body>
+    <div class="graydiv" style="height:auto">
+        <h2>Gestion des news</h2>
+
+        <a href="{{ path('admin_news') }}">Liste des news</a>
+
+    </div>
+
+    <div class="section">
+        <h1>Nouvelle news</h1>
+
+        <form class="form" method="POST" action="" >
+
+            <label><span class="input_r">Titre de la news.</span></label><br>
+            {{ form_widget(form.title) }}<br><br>
+
+            <label><span class="input_r">Contenu de la news.</span></label><br>
+            {{ form_widget(form.content) }}<br><br>
+
+
+            <label><span class="input_r">Contenant la ou les images de la news.</span></label><br>
+            {{ form_widget(form.album) }}<br><br>
+
+            <label><span class="input_r">Si oui la news est visible par tous.</span></label><br>
+            {{ form_widget(form.display) }}<br><br>
+
+
+            {{ form_widget(form) }}<br>
+
+            <input style="display: block;width: 200px;  margin-bottom:10px;" type="submit" value="Enregistrer la news" class="button-bevel green"/>
+
+        </form>
+
+
+    </div>
+    </body>
+</html>

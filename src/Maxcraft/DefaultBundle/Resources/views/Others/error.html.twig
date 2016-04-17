@@ -1,0 +1,41 @@
+{% extends "MaxcraftDefaultBundle:Others:layout.html.twig" %}
+
+{% block title %}Erreur{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{% block corps %}
+    <div style="clear: both;height:0px;"></div>
+    <div id="gallerie">
+
+        <div class="graydiv" style="height:auto">
+            <a href="{{ path('maxcraft_homepage') }}"><button class="button-bevel black" style="width:100%;">Accueil</button></a>
+            <a href="{{ path('maxcraft_reportbug') }}"><button class="button-bevel red" style="width:100%;">Reporter bug</button></a>
+            <a href="{{ path('newmp') }}"><button class="button-bevel red" style="width:100%;">Contacter un admin</button></a>
+        </div>
+        {{ render(controller("MaxcraftDefaultBundle:Default:wrap")) }}
+
+    </div>
+    <div class="section" id="profil">
+
+        <div id="avatar">
+            <img src="{{ asset('images/exception.png') }}"/>
+        </div>
+
+        <div id="infos" style="	margin-top: 7px;height: 120px;width: 380px;margin-left: 165px;padding: 8px;">
+            <h1>Oups !</h1>
+            <p>{{ content }}<br/>
+            Si le problème perciste, merci de le reporter ou de contacter un administarteur.</p>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{#
+        <title>Maxcraft - Erreur</title>
+    <body>
+        <p> {{ content }} </p>
+    </body>
+#}

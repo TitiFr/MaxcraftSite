@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Maxcraft - Factions</title>
+    </head>
+
+    <body>
+            <div class="section">
+                <h1>Les factions ({{ factions|length }})</h1>
+                <p>Voici les factions disponibles sur le serveur. Vous pouvez créer votre propre faction en payant <strong>{{ prix }} POs</strong> sur <a style="color :rgb(0, 90, 187);" href="{{ path("maxcraft_faction_create") }}">cette page</a>.</p>
+
+                <br/>
+                {% for faction in factions %}
+
+                    <a href="{{ path('maxcraft_faction', {'factionTag': faction.tag}) }}"><div class="parcelle_part">
+
+                            <img class="factionavatar" src="{{ faction.avatar(246) }}"/>
+                            <ul>
+                                <li style="text-align:center;"><strong style="font-size:17px;">{{ faction.name }}</strong></li>
+                                <li style="text-align:center;line-height:16px; color:rgb(0, 90, 187);">[<strong>{{ faction.tag }}</strong>]</li>
+                                <li style="text-align:center;"><strong title="Fondateur de faction">{{ faction.owner.username }}</strong> | <span title="{% for user in faction.members %}{{ user.username }} {% endfor %}"><strong>{{ faction.members|length }}</strong> membre(s)</span></li>
+                            </ul>
+                        </div></a>
+
+                {% endfor %}
+
+
+
+
+
+            </div>
+    </body>
+</html>

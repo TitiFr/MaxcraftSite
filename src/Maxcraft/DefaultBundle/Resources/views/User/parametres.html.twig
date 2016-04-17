@@ -1,0 +1,32 @@
+{% extends "MaxcraftDefaultBundle:Others:layout.html.twig" %}
+
+{% block title %}Paramètres{% endblock %}
+{% block js %}
+{% endblock %}
+
+{% block corps %}
+
+<div style="clear: both;height:0px;"></div>
+<div id="gallerie">
+    {{ render(controller("MaxcraftDefaultBundle:Default:wrap")) }}
+</div>
+
+<div class="section">
+
+</div>
+
+
+{% endblock %}
+
+
+
+
+{#   MEMO
+        <div>
+            {{ form(passwordform) }}
+        </div>
+
+        <div>
+            {{ form(paramform) }}
+        </div>
+#}
