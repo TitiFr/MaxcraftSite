@@ -296,5 +296,3 @@ test_addfaction:
 test_addZone:
     path: /test/newZone/{name}/{points}/{world}
     defaults: {_controller: MaxcraftDefaultBundle:Default:testAddZone}
-
-

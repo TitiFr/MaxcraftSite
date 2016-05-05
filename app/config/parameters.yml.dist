@@ -19,3 +19,9 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     serverKey: sisigifsuryvette#91
+
+    bukkit_version:
+    youtube:
+    twitter:
+    facebook:
+    voteforus:
